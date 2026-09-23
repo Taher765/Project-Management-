@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام يوميات العمال</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/loadin.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="loadingPage">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Start Overlay -->
+    <div class="overlay">
+      <div
+        class="add-worker w-100 h-100 d-flex align-items-center justify-content-center"
+      >
+        <div class="form w-100">
+          <h2>اضف اسم ويوميه العامل من هنا</h2>
+          <div class="form-group mb-2">
+            <label for="">اسم العامل</label>
+            <input
+              class="form-control add-worker-input"
+              type="text"
+              placeholder="من فضلك ادخل اسم العامل"
+            />
+          </div>
+          <div class="form-group mb-2">
+            <label for="">اليوميه </label>
+            <input
+              class="form-control wage"
+              type="text"
+              placeholder="من فضلك ادخل يوميه العامل"
+            />
+          </div>
+          <div class="close mt-3 d-flex gap-2">
+            <button class="btn-add-worker btn btn-primary">اضافه العامل</button>
+            <button class="btn btn-exit-overlay-add-worker btn-danger">
+              خروج
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" dir="rtl">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <h4 class="logo">نظام ادارة اجور العمال (<span></span>)</h4>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="projects.html">
+                المشاريع</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="deletedWorkers.html"
+                >العمال المحذوفين
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                المصاريف والايرادات
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="expenses.html">المصاريف </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="receipts.html">الايرادات </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ارشيف العمال
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="arshef.html">ارشيف شهري</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="project-archive.html"
+                    >ارشيف المشروع ككل</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Start date And Next & Prev -->
+
+    <!-- Start Table worker -->
+    <div class="workers py-3">
+      <div class="container-fluid">
+        <h2 class="title-date text-center py-2">
+          <!-- js -->
+        </h2>
+        <div
+          class="date d-flex align-items-center justify-content-between w-100"
+        >
+          <div class="d-flex align-items-center justify-content-center gap-3">
+            <div class="d-flex">
+              <button class="btnPrev btn p-0">
+                <i class="fa-solid fa-chevron-right icon"></i>
+              </button>
+              <button class="btn-next btn p-0">
+                <i class="fa-solid fa-chevron-left icon"></i>
+              </button>
+            </div>
+            <input
+              id="search-week"
+              class="search-week form-control"
+              type="date"
+              lang="en-GB"
+              placeholder="dd/mm/yyyy"
+            />
+            <button class="view-week btn btn-primary">عرض</button>
+          </div>
+          <button id="view-overlay" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i>
+            اضافه عامل
+          </button>
+        </div>
+        <!-- <div class="position-relative">
+            <button class="btn ms-auto btn-danger close-week">
+              اغلاق الاسبوع
+            </button>
+          </div> -->
+
+        <div class="table-responsive">
+          <table
+            class="table table-sm table-bordered table-striped table-hover text-center align-middle rounded"
+          >
+            <thead class="tableHead align-middle">
+              <!-- js  -->
+            </thead>
+
+            <tbody class="tableBody">
+              <!-- js -->
+            </tbody>
+          </table>
+        </div>
+        <button class="btn btn-danger close-week">اغلاق الاسبوع</button>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+
+    <script src="js/all.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/verifyPage.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

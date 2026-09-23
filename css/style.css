@@ -1,0 +1,71 @@
+* {
+  font-family: "Cairo", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.overlay {
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.479);
+  color: #fff;
+  display: none;
+  z-index: 111;
+}
+.display-overlay {
+  display: block;
+}
+
+.overlay .form {
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+  height: 355px;
+  border-radius: 20px;
+  padding: 20px;
+  color: black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.overlay .form input {
+  min-width: 386px;
+  max-width: 380px;
+}
+
+.icon {
+  cursor: pointer;
+  background: #0d6efd;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  border: 2px solid #000;
+}
+
+.color {
+  background-color: #dc3545;
+}
+/* .close-week {
+  position: absolute;
+  top: -45px;
+  left: 0;
+} */
+
+@media (max-width: 576px) {
+  .date {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/loadin.css" />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="loadingPage">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <main class="login-box">
+      <h1>تسجيل الدخول</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">اسم المستخدم</label>
+          <input
+            id="username"
+            autocomplete="off"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">كلمة المرور</label>
+          <input
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <button id="btnSupmit" class="btn btn-success">دخول</button>
+        <div id="message"></div>
+      </form>
+    </main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/setUserLocalStorage.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="/js/login.js"></script>
+  </body>
+</html>

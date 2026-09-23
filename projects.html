@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المشاريع المتاحه</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/loadin.css" />
+    <link rel="stylesheet" href="css/projects.css" />
+  </head>
+
+  <body>
+    <!-- POP UP ADD PROJECT -->
+    <div class="loadingPage">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <div class="overlay-add-project">
+      <div class="add-project">
+        <div class="form w-100">
+          <h2>اضف مشروع جديد</h2>
+          <div class="form-group mb-2">
+            <label for="">اسم المشروع <span class="text-danger">*</span></label>
+            <input
+              class="form-control my-2 inputName"
+              type="text"
+              placeholder="من فضلك ادخل اسم المشروع"
+            />
+          </div>
+          <div class="form-group mb-2">
+            <label for="">نبذه عن المشروع </label>
+            <input
+              class="form-control my-2 inputDesc"
+              type="text"
+              placeholder="من فضلك ادخل نبذه عن المشروع "
+            />
+          </div>
+
+          <div class="mt-3 d-flex gap-2">
+            <button class="btnAddProject btn btn-primary">اضافه المشروع</button>
+            <button
+              id="close-overlay"
+              class="btn btn-exit-overlay-add-project btn-danger"
+            >
+              خروج
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- POP UP Edit PROJECT -->
+
+    <div class="overlay-edit-project">
+      <div class="edit-project">
+        <div class="form w-100">
+          <h2>اضف مشروع جديد</h2>
+          <div class="form-group mb-2">
+            <label for="">اسم المشروع</label>
+            <input class="form-control projectName my-2" type="text" />
+          </div>
+          <div class="form-group mb-2">
+            <label for="">نبذه عن المشروع </label>
+            <input class="form-control projectDecs my-2" type="text" />
+          </div>
+          <div class="form-group mb-2">
+            <label for="">حاله المشروع </label>
+            <select class="form-control projectStatu">
+              <option value="active">نشط</option>
+              <option value="closed">منتهي</option>
+            </select>
+          </div>
+          <div class="form-group mb-2">
+            <label for="">تاريخ الانتهاء</label>
+            <input class="form-control my-2" type="date" />
+          </div>
+          <div class="mt-3 d-flex gap-2">
+            <button class="btnEditProject btn btn-primary">
+              اضافه المشروع
+            </button>
+            <button
+              id="close-overlay"
+              class="btn btn-exit-overlay-edit-project btn-danger"
+            >
+              خروج
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- STRAT HEADER -->
+    <header class="header shadow-sm py-3">
+      <div class="container">
+        <div class="navbar">
+          <h3 class="logo">اداره المشاريع</h3>
+          <button id="open-overlay" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> اضافه مشروع جديد
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- START MAIN PROJECTS -->
+    <div class="projects py-5">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/verifyPage.js"></script>
+    <script src="js/setUserLocalStorage.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/projects.js"></script>
+  </body>
+</html>

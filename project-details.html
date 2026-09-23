@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المشاريع المتاحه</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/loadin.css" />
+    <style>
+      .row div {
+        height: 100px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- POP UP ADD PROJECT -->
+    <div class="loadingPage">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Start Header  -->
+    <header class="header shadow-sm p-3">
+      <div class="container">
+        <div class="navbar">
+          <div>
+            <h3 class="logo">اجماليات المشروع (اسم)</h3>
+          </div>
+          <div>
+            <a class="btn btn-danger" href="projects.html">عوده</a>
+            <button class="btn btn-success export">تصدير</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- START MAIN PROJECTS -->
+    <div class="projects py-5">
+      <div class="container">
+        <div class="projectInfo mb-3"></div>
+        <h2 class="">التفاصيل العمال</h2>
+
+        <div class="row workers"></div>
+        <h2>المصاريف والايرادات</h2>
+        <div class="row cost"></div>
+      </div>
+    </div>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"
+    ></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/verifyPage.js"></script>
+    <script src="js/setUserLocalStorage.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/projectDetails.js"></script>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>استرداد العمال المحذوفين</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/loadin.css" />
+  </head>
+  <body>
+    <div class="loadingPage">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" dir="rtl">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <h4 class="logo">العمال المحذوفين</h4>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="projects.html">
+                المشاريع</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">
+                الاسبوع الحالي</a
+              >
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                المصاريف والايرادات
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="expenses.html">المصاريف </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="receipts.html">الايرادات </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ارشيف العمال
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="arshef.html">ارشيف شهري</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="project-archive.html"
+                    >ارشيف المشروع ككل</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- TABLE HIDDEN WORKERS -->
+    <div class="hiddenWorkers py-5">
+      <div class="container">
+        <h3>استرجاع العمال</h3>
+        <div class="table-responsive">
+          <table
+            class="table table-bordered table-striped table-hover text-center align-middle"
+          >
+            <thead>
+              <tr class="">
+                <th>الاسم</th>
+                <th>اليوميه</th>
+                <th>اجراءات</th>
+              </tr>
+            </thead>
+
+            <tbody class="table-worker"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/loading.js"></script>
+    <script src="js/deletedWorkers.js"></script>
+  </body>
+</html>
