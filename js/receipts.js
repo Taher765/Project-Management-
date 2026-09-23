@@ -10,7 +10,7 @@ const week = document.querySelector(".week");
 const month = document.querySelector(".month");
 const total = document.querySelector(".total");
 
-const base_url = "http://localhost:5000/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
 const projectId = localStorage.getItem("projectId");
 let recepitsID = null;
 // VERIFYCTION PAGE

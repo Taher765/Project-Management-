@@ -3,7 +3,7 @@ const password = document.getElementById("password");
 const message = document.getElementById("message");
 const btnSupmit = document.getElementById("btnSupmit");
 
-const basu_url = "http://localhost:5000/api";
+const basu_url = "https://project-management-backend-jco6.onrender.com/api";
 
 addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {

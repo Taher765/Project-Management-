@@ -21,7 +21,7 @@ const titleDate = document.querySelector(".title-date");
 const tableHead = document.querySelector(".tableHead");
 const tableBody = document.querySelector(".tableBody");
 
-const base_url = "http://localhost:5000/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
 
 let dateNow = null;
 let globalWeekId = null;
