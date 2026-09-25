@@ -21,6 +21,8 @@ const titleDate = document.querySelector(".title-date");
 const tableHead = document.querySelector(".tableHead");
 const tableBody = document.querySelector(".tableBody");
 
+const closeWeek = document.querySelector(".close-week");
+
 const base_url = "https://project-management-backend-jco6.onrender.com/api";
 
 let dateNow = null;
@@ -91,9 +93,6 @@ async function getWeek() {
     loading("d-none");
 
     if (data.data.week.closed) {
-      document.querySelector(".close-week").innerHTML = "فتح الاسبوع";
-    } else {
-      document.querySelector(".close-week").innerHTML = "اغلاق الاسبوع";
     }
 
     if (data.success) {
@@ -106,6 +105,8 @@ async function getWeek() {
     loading("d-none");
 
     console.log(error);
+  } finally {
+    loading("d-none");
   }
 }
 
@@ -115,7 +116,9 @@ async function displayData(data) {
 
   titleDate.innerHTML = `جدول الاسبوع من <span><span>${data.data.week.startDate}</span></span> <br />   الي <span>${data.data.week.endDate}</span> `;
   dateNow = data.data.week.startDate;
-
+  document.querySelector(".closeSpan").innerHTML = data.data.week.closed
+    ? "الاسبوع مغلق"
+    : "الاسبوع مفتوح";
   tableHead.innerHTML = `
               <tr class="align-middle">
                 <th>الاسم</th>
@@ -244,11 +247,9 @@ async function getWeekByDate() {
         globalWeekId = data.data.week.id;
 
         displayData(data);
-        if (data.data.week.closed) {
-          document.querySelector(".close-week").innerHTM = "فتح الاسبوع";
-        } else {
-          document.querySelector(".close-week").innerHTM = "اغلاق الاسبوع";
-        }
+        document.querySelector(".closeSpan").innerHTML = data.data.week.closed
+          ? "الاسبوع مغلق"
+          : "الاسبوع مفتوح";
       } else {
         toastify("من فضلك قم بأدخال تاريخ صالح", "#dc3545");
         console.log(data);
@@ -277,11 +278,9 @@ async function previousWeek() {
     const data = await response.json();
     if (data.success) {
       globalWeekId = data.data.week.id;
-      if (data.data.week.closed) {
-        document.querySelector(".close-week").innerHTM = "فتح الاسبوع";
-      } else {
-        document.querySelector(".close-week").innerHTM = "اغلاق الاسبوع";
-      }
+      document.querySelector(".closeSpan").innerHTML = data.data.week.closed
+        ? "الاسبوع مغلق"
+        : "الاسبوع مفتوح";
 
       displayData(data);
       searchWeek.value = dateNow;
@@ -379,17 +378,17 @@ async function deleteWroker(workerId) {
   try {
     const result = confirm("هل تريد اتمام عمليه حذف العامل ");
     if (result) {
-      const response = await fetch(`${base_url}/workers/${workerId}`, {
-        method: "DELETE",
-        headers: {
-          "X-Username": JSON.parse(localStorage.getItem("info")).username,
-          "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
-          "X-Project-Id": localStorage.getItem("projectId"),
+      const response = await fetch(
+        `${base_url}/workers/${workerId}?weekStart=${dateNow}`,
+        {
+          method: "DELETE",
+          headers: {
+            "X-Username": JSON.parse(localStorage.getItem("info")).username,
+            "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
+            "X-Project-Id": localStorage.getItem("projectId"),
+          },
         },
-        body: {
-          weekId: globalWeekId,
-        },
-      });
+      );
       const data = await response.json();
 
       if (data.success) {
@@ -408,13 +407,9 @@ async function deleteWroker(workerId) {
 }
 // START CLOSE WEEK
 
-document.querySelector(".close-week").addEventListener("click", async () => {
-  let btnName =
-    document.querySelector(".close-week").innerHTML == "فتح الاسبوع"
-      ? (document.querySelector(".close-week").innerHTML = "اغلاق الاسبوع")
-      : (document.querySelector(".close-week").innerHTML = "اغلاق الاسبوع"
-          ? (document.querySelector(".close-week").innerHTML = "فتح الاسبوع")
-          : document.querySelector(".close-week").innerHTML);
+closeWeek.addEventListener("click", updateOpen);
+
+async function updateOpen() {
   try {
     const response = await fetch(`${base_url}/weeks/${globalWeekId}/close`, {
       method: "PATCH",
@@ -426,13 +421,16 @@ document.querySelector(".close-week").addEventListener("click", async () => {
       },
     });
     const data = await response.json();
+    document.querySelector(".closeSpan").innerHTML = data.data.week.closed
+      ? "الاسبوع مغلق"
+      : "الاسبوع مفتوح";
+
     // ========= Start Toastify
 
     if (data.success) {
-      document.querySelector(".close-week").innerHTML = btnName;
       toastify(`تم تحديث حاله الاسبوع`, "#198754");
     }
   } catch (error) {
     console.log(error);
   }
-});
+}

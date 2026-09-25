@@ -1,4 +1,5 @@
-const basu_url = "https://project-management-backend-jco6.onrender.com/api";
+// const basu_url = "http://localhost:5000/api";
+let basu_url = "https://project-management-backend-jco6.onrender.com/api";
 
 async function verifyAuth() {
   try {

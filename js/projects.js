@@ -11,7 +11,7 @@ const projectDecs = document.querySelector(".projectDecs");
 const projectStatu = document.querySelector(".projectStatu");
 const projectDate = document.querySelector(".projectDate");
 const btnAddProject = document.querySelector(".btnAddProject");
-const base_url = "https://project-management-backend-jco6.onrender.com/api";
+let base_url = "https://project-management-backend-jco6.onrender.com/api";
 let ProjectId = null;
 
 // التحقق من صلاحيه المستخدم

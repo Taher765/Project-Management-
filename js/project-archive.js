@@ -8,8 +8,8 @@ const totalRemaining = document.querySelector(".totalRemaining");
 const totalWorkers = document.querySelector(".totalWorkers");
 const tableBody = document.querySelector(".table-body");
 
-// const basu_url = "https://worker-backend-2.onrender.com/api";
 const basu_url = "https://project-management-backend-jco6.onrender.com/api";
+// const basu_url = "http://localhost:5000/api";
 
 addEventListener("load", getMonth);
 // GET CURNT MONTH
