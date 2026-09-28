@@ -24,9 +24,11 @@ const tableBody = document.querySelector(".tableBody");
 const closeWeek = document.querySelector(".close-week");
 
 const base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://localhost:5000/api";
 
 let dateNow = null;
 let globalWeekId = null;
+let globalWorkerId = null;
 // VERIFYCTION PAGE
 addEventListener("DOMContentLoaded", verifyAuth);
 // GET PROJECT ID
@@ -133,6 +135,18 @@ async function displayData(data) {
                 <th>اجراءات</th>
               </tr>
   `;
+  tableHead.innerHTML += `
+              <tr class="align-middle">
+                <th>عدد الحضور اليومي</th>
+                <th class="presentWorkers-${data.data?.days[0].date}">${data.data?.days[0]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[1].date}">${data.data?.days[1]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[2].date}">${data.data?.days[2]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[3].date}">${data.data?.days[3]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[4].date}">${data.data?.days[4]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[5].date}">${data.data?.days[5]?.presentWorkers}</th>
+                <th class="presentWorkers-${data.data?.days[6].date}">${data.data?.days[6]?.presentWorkers}</th>
+              </tr>
+  `;
 
   let content = ``;
 
@@ -147,7 +161,7 @@ async function displayData(data) {
   data.data.workers.forEach((data) => {
     content += `
              <tr >
-                <td>${data.worker.name}</td>
+                <td><a class="nav-link workerName-${data?.worker?._id}" href="profile.html?id=${data.worker._id}">${data.worker.name}</a></td>
                 <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[0]?.date}' , event)" ${data?.days[0]?.attended ? "checked" : ""}    type="checkbox" class="form-check-input" />
                 <br />
                 <span>${data?.days[0]?.wage ? data.days[0].wage : 0}</span>
@@ -179,7 +193,7 @@ async function displayData(data) {
                 <td id="total-${data?.worker?._id}">${data.summary?.net}</td>
                 <td>
                   <button onclick="deleteWroker('${data.worker._id}')" class="btn btn-danger">حذف</button>
-                  <a href="profile.html?id=${data.worker._id}" class="btn btn-primary">تفاصيل</a>
+                  <button onclick="displayEditName('${data.worker._id}' , '${data.worker.name}')" class="btn btn-warning">تعدل الاسم</button>
                 </td>
               </tr>
    `;
@@ -200,6 +214,9 @@ async function addWrker(e) {
 }
 
 async function fetchAddWorker(body) {
+  btnAddWorker.disabled = true;
+  const orginalText = btnAddWorker.innerHTML;
+  btnAddWorker.innerHTML = "جاري التحميل ... ";
   try {
     const response = await fetch(`${base_url}/workers`, {
       method: "POST",
@@ -226,6 +243,9 @@ async function fetchAddWorker(body) {
     }
   } catch (error) {
     console.log(error);
+  } finally {
+    btnAddWorker.disabled = false;
+    btnAddWorker.innerHTML = orginalText;
   }
 }
 // GET WEEK BY DATE
@@ -252,11 +272,9 @@ async function getWeekByDate() {
           : "الاسبوع مفتوح";
       } else {
         toastify("من فضلك قم بأدخال تاريخ صالح", "#dc3545");
-        console.log(data);
       }
     } else {
       toastify("من فضلك قم بأدخال تاريخ صالح", "#dc3545");
-      console.log(data);
     }
   } catch (error) {
     console.log(error);
@@ -307,12 +325,9 @@ async function nextWeek() {
     const data = await response.json();
     if (data.success) {
       globalWeekId = data.data.week.id;
-      if (data.data.week.closed) {
-        document.querySelector(".close-week").innerHTM = "فتح الاسبوع";
-      } else {
-        document.querySelector(".close-week").innerHTM = "اغلاق الاسبوع";
-      }
-
+      document.querySelector(".closeSpan").innerHTML = data.data.week.closed
+        ? "الاسبوع مغلق"
+        : "الاسبوع مفتوح";
       displayData(data);
       searchWeek.value = dateNow;
       console.log(data);
@@ -351,6 +366,9 @@ async function handelAttendance(workerId, date, checkboxEle) {
       console.log(data);
       document.getElementById(`total-${workerId}`).innerHTML =
         data.data.summary.net;
+
+      document.querySelector(`.presentWorkers-${date}`).innerHTML =
+        data.data.presentWorkers;
 
       // getWeek();
     } else {
@@ -432,5 +450,64 @@ async function updateOpen() {
     }
   } catch (error) {
     console.log(error);
+  }
+}
+
+// START FUNVTION EDIT NAME WORKER
+const popupEditName = document.querySelector(".popup-edit-name");
+const updateEditNameBtn = document.querySelector(".updateEditNameBtn");
+const closeEditNameBtn = document.querySelector(".closeEditNameBtn");
+const newName = document.querySelector(".EditNameInput");
+
+// START displayEditName
+function displayEditName(id, name) {
+  popupEditName.classList.remove("d-none");
+  popupEditName.classList.add("d-flex");
+  globalWorkerId = id;
+  newName.value = name;
+}
+
+// START hiddenEditName
+closeEditNameBtn.addEventListener("click", hiddenEditName);
+function hiddenEditName() {
+  popupEditName.classList.remove("d-flex");
+  popupEditName.classList.add("d-none");
+}
+
+updateEditNameBtn.addEventListener("click", editNameWorkerFun);
+
+async function editNameWorkerFun() {
+  updateEditNameBtn.disabled = true;
+  const orginalText = updateEditNameBtn.innerHTML;
+  updateEditNameBtn.innerHTML = "جاري التحميل ... ";
+  try {
+    const response = await fetch(`${base_url}/workers/${globalWorkerId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Username": JSON.parse(localStorage.getItem("info")).username,
+        "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
+        "X-Project-Id": localStorage.getItem("projectId"),
+      },
+      body: JSON.stringify({
+        newName: newName.value,
+      }),
+    });
+    const data = await response.json();
+    if (data.success) {
+      toastify(data.message, "#198754");
+      hiddenEditName();
+      newName.value = "";
+
+      document.querySelector(`.workerName-${globalWorkerId}`).innerHTML =
+        data.data.name;
+    } else {
+      console.log(data);
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    updateEditNameBtn.disabled = false;
+    updateEditNameBtn.innerHTML = orginalText;
   }
 }

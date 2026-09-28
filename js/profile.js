@@ -31,11 +31,12 @@ const btnApllayTransactions = document.querySelector(
 );
 const noteInput = document.querySelector(".note");
 const amountInput = document.querySelector(".input-amount");
+const date = document.querySelector(".date");
 
 let transactionsType = null;
 let transactionsId = null;
 let base_url = "https://project-management-backend-jco6.onrender.com/api";
-// let base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://localhost:5000/api";
 
 // call Function openModal
 btnShowEditSallary.addEventListener("click", openModal);
@@ -137,6 +138,7 @@ async function getWorker() {
     });
     const data = await response.json();
     loading("d-none");
+    console.log(data);
 
     if (data.success) {
       displayProfileData(data);
@@ -164,6 +166,13 @@ function displayProfileData(data) {
 
   document.querySelector(".old-data-wage").innerHTML = contentHistory;
 
+  document.querySelector(".week").innerHTML =
+    `ايام الحضور الاسبوعيه :  ${data.data.attendance.week.presentDays} يوم `;
+  document.querySelector(".month").innerHTML =
+    `ايام الحضور الشهريه : ${data.data.attendance.month.presentDays} يوم `;
+  document.querySelector(".total").innerHTML =
+    `ايام حضور المشروع كله : ${data.data.attendance.project.presentDays} يوم `;
+
   dataWage.innerHTML = `${data.data.worker.name}`;
   wageSallery.innerHTML = `اليوميه الحاليه : ${data.data.worker.currentWage} ريال`;
   grossEarned.innerHTML = `اجمالي راتب الايام : <span>${data.data.financial.grossEarned} </span>`;
@@ -184,7 +193,7 @@ function displayProfileData(data) {
                 <td>${info.date}</td>
                 <td> 
                   <button ${info.type == "wage_change" ? "disabled" : ""} onclick= "deleteTransaction('${info._id}')" class="btn btn-danger btn-sm">حذف</button>
-                  <button ${info.type == "wage_change" ? "disabled" : ""}  onclick="openEditTransaction('${info._id}' , '${info.amount}' , '${info.type}' , '${info.note}')" class="btn btn-warning text-light btn-sm">تعديل</button>
+                  <button ${info.type == "wage_change" ? "disabled" : ""}  onclick="openEditTransaction('${info._id}' , '${info.amount}' , '${info.type}' , '${info.note}' , '${info.date}')" class="btn btn-warning text-light btn-sm">تعديل</button>
                   
                 </td>
               </tr>
@@ -202,7 +211,12 @@ async function addTransaction(name) {
     type: transactionsType,
     amount: amountInput.value,
     note: noteInput.value,
+    date: date.value,
   };
+
+  btnApllayTransactions.disabled = true;
+  const orginalText = btnApllayTransactions.innerHTML;
+  btnApllayTransactions.innerHTML = "جاري التحميل ... ";
 
   try {
     if (body.type == "" || body.amount == "" || body.note == "") {
@@ -227,11 +241,16 @@ async function addTransaction(name) {
       toastify(`تمت العمليه بنجاح`, "#198754");
       colseModal(name);
       getWorker();
+      noteInput.value = "";
+      amountInput.value = "";
     } else {
       toastify(`ادخل البيانات بشكل صحيح`, "#dc3545");
     }
   } catch (error) {
     console.log(error);
+  } finally {
+    btnApllayTransactions.disabled = false;
+    btnApllayTransactions.innerHTML = orginalText;
   }
 }
 
@@ -242,13 +261,14 @@ const btnExitransaction = document.querySelector(".btn-close-transaction");
 const selectType = document.querySelector(".select-type");
 const inputEditAmount = document.querySelector(".input-edit-amount");
 const inputEditNote = document.querySelector(".input-edit-note");
+const inputEditDate = document.querySelector(".inputEditDate");
 const btnApplyEditTransaction = document.querySelector(
   ".btn-apply-edit-transaction",
 );
 
 // STRAT FUNCTION OPEN MODAL EDIT TRANSACTION
 btnExitransaction.addEventListener("click", closeTransaction);
-function openEditTransaction(id, amount, type, note) {
+function openEditTransaction(id, amount, type, note, date) {
   popupTransaction.classList.add("popup-display");
   popupTransaction.classList.remove("popup-none");
   if (type == "wage_change") {
@@ -258,6 +278,7 @@ function openEditTransaction(id, amount, type, note) {
   selectType.value = type;
   inputEditAmount.value = amount;
   inputEditNote.value = note;
+  inputEditDate.value = date;
 
   transactionsId = id;
 }
@@ -284,6 +305,7 @@ async function editTransaction() {
         type: selectType.value,
         amount: inputEditAmount.value,
         note: inputEditNote.value,
+        date: inputEditDate.value,
       }),
     });
     const data = await response.json();
@@ -312,58 +334,15 @@ async function deleteTransaction(id) {
       },
     });
     const data = await response.json();
+
+    console.log(data);
     if (data.success) {
       toastify("تم حذف العمليه بنجاح", "#198754");
       getWorker();
     } else {
-      toastify("فشل في تنفيذ الطلب ", "#dc3545");
+      toastify(data.error.message, "#dc3545");
     }
   } catch (error) {
     console.log(error);
   }
 }
-
-// // START FUNVTION EDIT NAME WORKER
-// editNameWorker.addEventListener("click", displayEditName);
-// function displayEditName() {
-//   editName.classList.remove("d-none");
-//   editName.classList.add("d-flex");
-// }
-// document
-//   .querySelector(".closeEditName")
-//   .addEventListener("click", hiddenEditName);
-// function hiddenEditName() {
-//   editName.classList.remove("d-flex");
-//   editName.classList.add("d-none");
-// }
-// document
-//   .querySelector(".btnEditName")
-//   .addEventListener("click", editNameWorkerFun);
-// async function editNameWorkerFun() {
-//   const newName = document.querySelector(".editNameInput").value;
-//   const body = {
-//     name: newName,
-//   };
-//   try {
-//     const response = await fetch(`${base_url}/workers/${workerId}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         "X-Username": JSON.parse(localStorage.getItem("info")).username,
-//         "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
-//         "X-Project-Id": localStorage.getItem("projectId"),
-//       },
-//       body: JSON.stringify({
-//         body,
-//       }),
-//     });
-//     const data = await response.json();
-//     if (data.success) {
-//       console.log(data);
-//     } else {
-//       console.log(data);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }

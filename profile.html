@@ -35,6 +35,13 @@
           id=""
           placeholder="سبب العمليه"
         />
+        <input
+          class="form-control my-2 date"
+          type="date"
+          name=""
+          id=""
+          placeholder="سبب العمليه"
+        />
         <div>
           <button
             data-name="transactions"
@@ -198,6 +205,21 @@
         <div class="row gap-2 align-items-center justify-content-center">
           <div class="col-3 border rounded">
             <div class="item p-3">
+              <h4 class="text-center week"></h4>
+            </div>
+          </div>
+          <div class="col-3 border rounded">
+            <div class="item p-3">
+              <h4 class="text-center month"></h4>
+            </div>
+          </div>
+          <div class="col-3 border rounded">
+            <div class="item p-3">
+              <h4 class="text-center total"></h4>
+            </div>
+          </div>
+          <div class="col-3 border rounded">
+            <div class="item p-3">
               <h4 class="text-center grossEarned"></h4>
             </div>
           </div>
@@ -266,19 +288,30 @@
     <div class="hestory">
       <div class="popup-transaction">
         <div class="form-group edit-transaction">
+          <label for="" class="text-secondary">تعديل العمليه</label>
           <select class="form-control select-type my-1">
             <option value="payment">دفعه</option>
             <option value="reward">مكافأه</option>
             <option value="deduction">خصم</option>
           </select>
+          <label for="" class="text-secondary">تعديل المبلغ</label>
           <input
             type="text"
             class="form-control my-1 input-edit-amount"
             placeholder="تعديل المبلغ"
           />
+          <label for="" class="text-secondary">تعديل السبب</label>
+
           <input
             type="text"
             class="form-control input-edit-note my-1"
+            placeholder="تعديل السبب"
+          />
+          <label for="" class="text-secondary">تعديل التاريخ</label>
+
+          <input
+            type="date"
+            class="form-control inputEditDate my-1"
             placeholder="تعديل السبب"
           />
           <button class="btn btn-sm btn-success btn-apply-edit-transaction">

@@ -11,11 +11,13 @@ const totalDiscounts = document.querySelector(".totalDiscounts");
 const grossEarned = document.querySelector(".grossEarned");
 
 let base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://localhost:5000/api";
 
 addEventListener("load", getWorker);
 
 const params = new URLSearchParams(window.location.search);
 const workerId = params.get("id");
+const month = params.get("month");
 
 // FUNCTION VIEW OLD WAGE
 
@@ -26,13 +28,16 @@ async function getWorker() {
   }
   loading("d-flex");
   try {
-    const response = await fetch(`${base_url}/workers/${workerId}/monthly`, {
-      headers: {
-        "X-Username": JSON.parse(localStorage.getItem("info")).username,
-        "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
-        "X-Project-Id": localStorage.getItem("projectId"),
+    const response = await fetch(
+      `${base_url}/workers/${workerId}/monthly?date=${month}`,
+      {
+        headers: {
+          "X-Username": JSON.parse(localStorage.getItem("info")).username,
+          "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
+          "X-Project-Id": localStorage.getItem("projectId"),
+        },
       },
-    });
+    );
     const data = await response.json();
     loading("d-none");
 
@@ -50,6 +55,11 @@ async function getWorker() {
 function displayProfileData(data) {
   logo.innerHTML = `
   ملف العامل : ${data.data.worker.name}
+  `;
+
+  document.querySelector(".dateDiv").innerHTML = `
+  
+    <h5>تفاصيل العامل من  ${data.data.month.startDate} الي  ${data.data.month.endDate}</h5>
   `;
 
   grossEarned.innerHTML = `اجمالي راتب الايام : <span>${data.data.financial.grossEarned} </span>`;

@@ -82,7 +82,7 @@ function displaydata(data) {
   data.data.workers.forEach((worker, index) => {
     tableContent += `
             <tr>
-              <td>${worker.name}</td>
+              <td><a class="nav-link" href="profile.html?id=${worker.id}" > ${worker.name}</a></td>
               <td>${worker.attendance.presentDays}</td>
               <td>${worker.attendance.absentDays}</td>
               <td>${worker.attendance.grossEarned}</td>
@@ -92,7 +92,7 @@ function displaydata(data) {
               <td>${worker.financial.paid} <span>ريال</span></td>
               <td>${worker.financial.remaining} <span>ريال</span></td>
               <td class="d-flex gap-2">
-                <a class="btn btn-warning text-nowrap btn-sm" href="month-profile.html?id=${worker.id}">عرض العامل</a>
+                <a class="btn btn-warning text-nowrap btn-sm" href="month-profile.html?id=${worker.id}&month=${data.data.month.startDate}">عرض الشهر </a>
         <button class="btn btn-sm btn-success export" onclick='exportSheet(${index})'>تصدير</button>
                 
               </td>

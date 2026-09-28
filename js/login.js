@@ -3,8 +3,8 @@ const password = document.getElementById("password");
 const message = document.getElementById("message");
 const btnSupmit = document.getElementById("btnSupmit");
 
-// const basu_url = "https://project-management-backend-jco6.onrender.com/api";
-const basu_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://localhost:5000/api";
 
 addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -25,7 +25,7 @@ async function login(e) {
     password: password.value,
   };
   try {
-    const response = await fetch(`${basu_url}/auth/login`, {
+    const response = await fetch(`${base_url}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
