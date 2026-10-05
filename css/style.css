@@ -65,9 +65,26 @@ input[type="checkbox"] {
 } */
 
 @media (max-width: 576px) {
-  .date {
-    flex-direction: column;
+  .logo {
+    font-size: 15px;
   }
+  .title-date {
+    font-size: 15px;
+  }
+  .icon {
+    width: 20px;
+    height: 20px;
+    padding: 7px;
+  }
+  table {
+    font-size: 13px;
+  }
+  table thead tr th .table-date {
+    display: none;
+  }
+  /* .date {
+    flex-direction: column;
+  } */
 }
 
 .popup-edit-name {
@@ -88,4 +105,48 @@ input[type="checkbox"] {
   min-width: 400px;
   border-radius: 10px;
   padding: 10px;
+}
+
+.attendance-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #aaa;
+  border-radius: 5px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  position: relative;
+}
+
+/* حاضر */
+.attendance-checkbox:checked {
+  background: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.attendance-checkbox:checked::after {
+  content: "✓";
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* اليوم خلص + غياب */
+.attendance-checkbox.day-finished-absent {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.attendance-checkbox.day-finished-absent::after {
+  content: "×";
+  color: white;
+  font-size: 18px;
+  line-height: 17px;
+  font-weight: bold;
 }

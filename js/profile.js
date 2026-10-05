@@ -173,6 +173,11 @@ function displayProfileData(data) {
   document.querySelector(".total").innerHTML =
     `ايام حضور المشروع كله : ${data.data.attendance.project.presentDays} يوم `;
 
+  document.querySelector(".carriedForward").innerHTML =
+    `المترحل من الشهور القديمه ${data.data.financial.carriedForward} ريال`;
+  document.querySelector(".currentMonthDue").innerHTML =
+    `حسابه الشهر الحالي ${data.data.financial.currentMonthDue} ريال`;
+
   dataWage.innerHTML = `${data.data.worker.name}`;
   wageSallery.innerHTML = `اليوميه الحاليه : ${data.data.worker.currentWage} ريال`;
   grossEarned.innerHTML = `اجمالي راتب الايام : <span>${data.data.financial.grossEarned} </span>`;

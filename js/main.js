@@ -124,13 +124,13 @@ async function displayData(data) {
   tableHead.innerHTML = `
               <tr class="align-middle">
                 <th>الاسم</th>
-                <th><span>${data.data?.days[0]?.dayName}</span> <br /><span>${data.data?.days[0]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[1]?.dayName}</span> <br /><span>${data.data?.days[1]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[2]?.dayName}</span> <br /><span>${data.data?.days[2]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[3]?.dayName}</span> <br /><span>${data.data?.days[3]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[4]?.dayName}</span> <br /><span>${data.data?.days[4]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[5]?.dayName}</span> <br /><span>${data.data?.days[5]?.date.slice(5)}</span></th>
-                <th><span>${data.data?.days[6]?.dayName}</span> <br /><span>${data.data?.days[6]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[0]?.dayName}</span> <br /><span class="table-date">${data.data?.days[0]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[1]?.dayName}</span> <br /><span class="table-date">${data.data?.days[1]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[2]?.dayName}</span> <br /><span class="table-date">${data.data?.days[2]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[3]?.dayName}</span> <br /><span class="table-date">${data.data?.days[3]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[4]?.dayName}</span> <br /><span class="table-date">${data.data?.days[4]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[5]?.dayName}</span> <br /><span class="table-date">${data.data?.days[5]?.date.slice(5)}</span></th>
+                <th><span>${data.data?.days[6]?.dayName}</span> <br /><span class="table-date">${data.data?.days[6]?.date.slice(5)}</span></th>
                 <th>حساب الاسبوع</th>
                 <th>اجراءات</th>
               </tr>
@@ -150,50 +150,53 @@ async function displayData(data) {
 
   let content = ``;
 
-  // const weekEndDate = new Date(data.data?.week.endDate);
+  function isFinishedDay(dateString) {
+    const today = new Date();
 
-  // const today = new Date();
-  // today.setHours(0, 0, 0, 0);
+    const target = new Date(`${dateString}T00:00:00`);
 
-  // const isPastWeek = weekEndDate < today;
-  // ${isPastWeek ? "disabled" : ""} // add all check boxs
+    today.setHours(0, 0, 0, 0);
+    target.setHours(0, 0, 0, 0);
+
+    return target < today;
+  }
 
   data.data.workers.forEach((data) => {
     content += `
              <tr >
                 <td><a class="nav-link workerName-${data?.worker?._id}" href="profile.html?id=${data.worker._id}">${data.worker.name}</a></td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[0]?.date}' , event)" ${data?.days[0]?.attended ? "checked" : ""}    type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[0]?.date}' , event)" ${data?.days[0]?.attended ? "checked" : ""}    type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[0]?.attended ? "" : isFinishedDay(data?.days[0]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[0]?.wage ? data.days[0].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[1]?.date}' , event)" ${data?.days[1]?.attended ? "checked" : ""}   type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[1]?.date}' , event)" ${data?.days[1]?.attended ? "checked" : ""}   type="checkbox" class="form-check-input attendance-checkbox ${data?.days[1]?.attended ? "" : isFinishedDay(data?.days[1]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[1]?.wage ? data.days[1].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[2]?.date}' , event)" ${data?.days[2]?.attended ? "checked" : ""}  type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[2]?.date}' , event)" ${data?.days[2]?.attended ? "checked" : ""}  type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[2]?.attended ? "" : isFinishedDay(data?.days[2]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[2]?.wage ? data.days[2].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[3]?.date}' , event)" ${data?.days[3]?.attended ? "checked" : ""}  type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[3]?.date}' , event)" ${data?.days[3]?.attended ? "checked" : ""}  type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[3]?.attended ? "" : isFinishedDay(data?.days[3]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[3]?.wage ? data.days[3].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[4]?.date}' , event)" ${data?.days[4]?.attended ? "checked" : ""}  type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[4]?.date}' , event)" ${data?.days[4]?.attended ? "checked" : ""}  type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[4]?.attended ? "" : isFinishedDay(data?.days[4]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[4]?.wage ? data.days[4].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[5]?.date}' , event)" ${data?.days[5]?.attended ? "checked" : ""}  type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[5]?.date}' , event)" ${data?.days[5]?.attended ? "checked" : ""}  type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[5]?.attended ? "" : isFinishedDay(data?.days[5]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[5]?.wage ? data.days[5].wage : 0}</span>
                 </td>
-                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[6]?.date}' , event)" ${data?.days[6]?.attended ? "checked" : ""}  type="checkbox" class="form-check-input" />
+                <td><input onchange="handelAttendance('${data?.worker?._id}' , '${data?.days[6]?.date}' , event)" ${data?.days[6]?.attended ? "checked" : ""}  type="checkbox"  class="form-check-input attendance-checkbox ${data?.days[6]?.attended ? "" : isFinishedDay(data?.days[6]?.date) ? "day-finished-absent" : ""}" />
                 <br />
                 <span>${data?.days[6]?.wage ? data.days[6].wage : 0}</span>
                 </td>
                 <td id="total-${data?.worker?._id}">${data.summary?.net}</td>
                 <td>
-                  <button onclick="deleteWroker('${data.worker._id}')" class="btn btn-danger">حذف</button>
-                  <button onclick="displayEditName('${data.worker._id}' , '${data.worker.name}')" class="btn btn-warning">تعدل الاسم</button>
+                  <button onclick="deleteWroker('${data.worker._id}')" class="btn btn-sm  btn-danger">حذف</button>
+                  <button onclick="displayEditName('${data.worker._id}' , '${data.worker.name}')" class="btn  btn-sm btn-warning">تعدل </button>
                 </td>
               </tr>
    `;
@@ -345,6 +348,12 @@ async function nextWeek() {
 async function handelAttendance(workerId, date, checkboxEle) {
   const isChecked = checkboxEle.target.checked;
   const status = isChecked ? "present" : "absent";
+  if (status == "absent") {
+    checkboxEle.target.classList.add("day-finished-absent");
+  } else {
+    checkboxEle.target.classList.remove("day-finished-absent");
+  }
+
   const body = {
     date,
     status,
