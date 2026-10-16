@@ -35,8 +35,8 @@ const date = document.querySelector(".date");
 
 let transactionsType = null;
 let transactionsId = null;
-// let base_url = "https://project-management-backend-jco6.onrender.com/api";
-const base_url = "http://localhost:5000/api";
+let base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://localhost:5000/api";
 
 // call Function openModal
 btnShowEditSallary.addEventListener("click", openModal);

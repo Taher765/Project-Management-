@@ -10,8 +10,8 @@ const totalRewards = document.querySelector(".totalRewards");
 const totalDiscounts = document.querySelector(".totalDiscounts");
 const grossEarned = document.querySelector(".grossEarned");
 
-// let base_url = "https://project-management-backend-jco6.onrender.com/api";
-const base_url = "http://localhost:5000/api";
+let base_url = "https://project-management-backend-jco6.onrender.com/api";
+// const base_url = "http://lo/calhost:5000/api";
 
 addEventListener("load", getWorker);
 
