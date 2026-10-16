@@ -8,6 +8,3 @@ function setUserLocalStorage(username, loginKey) {
 function getLocalStorage(info) {
   return JSON.parse(window.localStorage.getItem(info));
 }
-// function clearLocalStorage(info) {
-//   window.localStorage.removeItem(info);
-// }

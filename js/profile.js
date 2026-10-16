@@ -35,8 +35,8 @@ const date = document.querySelector(".date");
 
 let transactionsType = null;
 let transactionsId = null;
-let base_url = "https://project-management-backend-jco6.onrender.com/api";
-// const base_url = "http://localhost:5000/api";
+// let base_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "http://localhost:5000/api";
 
 // call Function openModal
 btnShowEditSallary.addEventListener("click", openModal);
@@ -189,13 +189,14 @@ function displayProfileData(data) {
 
   let contentInfo = "";
 
-  data.data.transactions.forEach((info) => {
+  data.data.transactions.forEach((info,index) => {
     contentInfo += ` 
               <tr>
                 <td>${info.type == "payment" ? "دفعه" : info.type == "deduction" ? "خصم" : info.type == "reward" ? "مكافأه" : info.type == "wage_change" ? "تغير يوميه" : info.type}</td>
                 <td>${info.amount}</td>
                 <td>${info.note} </td>
                 <td>${info.date}</td>
+                <td>${info.createdAt.slice(0,10)}</td>
                 <td> 
                   <button ${info.type == "wage_change" ? "disabled" : ""} onclick= "deleteTransaction('${info._id}')" class="btn btn-danger btn-sm">حذف</button>
                   <button ${info.type == "wage_change" ? "disabled" : ""}  onclick="openEditTransaction('${info._id}' , '${info.amount}' , '${info.type}' , '${info.note}' , '${info.date}')" class="btn btn-warning text-light btn-sm">تعديل</button>
