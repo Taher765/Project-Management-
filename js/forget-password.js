@@ -24,8 +24,8 @@ async function sendEmailToServer(e) {
       }),
     });
     const data = await response.json();
+
     if (data.success) {
-      console.log(data);
       toastify(data.message, "#198754");
       otpInput.disabled = false;
       btnNewPassword.disabled = false;
