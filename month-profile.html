@@ -66,25 +66,38 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.html">
-                الاسبوع الحالي</a
-              >
-            </li>
-            <li class="nav-item">
               <a class="nav-link" aria-current="page" href="projects.html">
                 المشاريع</a
               >
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">
+                جدول الحضور</a
+              >
+            </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="expenses.html">المصاريف والايردات</a>
+              <a class="nav-link" href="deletedWorkers.html"> المحذوفين </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="deletedWorkers.html"
-                >العمال المحذوفين
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                المصاريف والايرادات
               </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="expenses.html">المصاريف </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="receipts.html">الايرادات </a>
+                </li>
+              </ul>
             </li>
-
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -95,7 +108,7 @@
               >
                 ارشيف العمال
               </a>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu text-right">
                 <li>
                   <a class="dropdown-item" href="arshef.html">ارشيف شهري</a>
                 </li>
@@ -103,6 +116,40 @@
                   <a class="dropdown-item" href="project-archive.html"
                     >ارشيف المشروع ككل</a
                   >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                الملف الشخصي
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="userAcount.html">الحساب </a>
+                </li>
+                <li class="allUsersLink">
+                  <a class="dropdown-item" href="allUsers.html">
+                    كل الحسابات
+                  </a>
+                </li>
+                <li class="audit-logs">
+                  <a class="dropdown-item" href="audit-logs.html">
+                    سجل الحركات
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="btn btnLogout btn-danger w-100 mt-2 mb-0"
+                    href="#"
+                  >
+                    تسجيل الخروخ
+                  </button>
                 </li>
               </ul>
             </li>
@@ -169,7 +216,8 @@
                 <th>النوع</th>
                 <th>المبلغ</th>
                 <th>السبب</th>
-                <th>التاريخ</th>
+                <th>تاريخ الشهر</th>
+                <th>تاريخ تنفيذ العمليه</th>
               </tr>
             </thead>
 
@@ -186,6 +234,9 @@
     <script src="js/toastify.js"></script>
     <script src="js/all.min.js"></script>
     <script src="js/loading.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/logout.js"></script>
+
     <script src="js/month-profile.js"></script>
   </body>
 </html>

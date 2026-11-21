@@ -10,8 +10,8 @@ const totalRewards = document.querySelector(".totalRewards");
 const totalDiscounts = document.querySelector(".totalDiscounts");
 const grossEarned = document.querySelector(".grossEarned");
 
-let base_url = "https://project-management-backend-jco6.onrender.com/api";
-// const base_url = "http://lo/calhost:5000/api";
+// let base_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "http://localhost:5000/api";
 
 addEventListener("load", getWorker);
 
@@ -78,6 +78,7 @@ function displayProfileData(data) {
                 <td>${info.amount}</td>
                 <td>${info.note} </td>
                 <td>${info.date}</td>
+                <td>${info.createdAt.slice(0, 10)}</td>
                 
               </tr>
     `;

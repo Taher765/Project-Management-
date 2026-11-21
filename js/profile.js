@@ -32,11 +32,12 @@ const btnApllayTransactions = document.querySelector(
 const noteInput = document.querySelector(".note");
 const amountInput = document.querySelector(".input-amount");
 const date = document.querySelector(".date");
+const selectDate = document.querySelector(".select-date");
 
 let transactionsType = null;
 let transactionsId = null;
-let base_url = "https://project-management-backend-jco6.onrender.com/api";
-// const base_url = "http://localhost:5000/api";
+// let base_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "http://localhost:5000/api";
 
 // call Function openModal
 btnShowEditSallary.addEventListener("click", openModal);
@@ -189,14 +190,14 @@ function displayProfileData(data) {
 
   let contentInfo = "";
 
-  data.data.transactions.forEach((info,index) => {
+  data.data.transactions.forEach((info, index) => {
     contentInfo += ` 
               <tr>
                 <td>${info.type == "payment" ? "دفعه" : info.type == "deduction" ? "خصم" : info.type == "reward" ? "مكافأه" : info.type == "wage_change" ? "تغير يوميه" : info.type}</td>
                 <td>${info.amount}</td>
                 <td>${info.note} </td>
                 <td>${info.date}</td>
-                <td>${info.createdAt.slice(0,10)}</td>
+                <td>${info.createdAt.slice(0, 10)}</td>
                 <td> 
                   <button ${info.type == "wage_change" ? "disabled" : ""} onclick= "deleteTransaction('${info._id}')" class="btn btn-danger btn-sm">حذف</button>
                   <button ${info.type == "wage_change" ? "disabled" : ""}  onclick="openEditTransaction('${info._id}' , '${info.amount}' , '${info.type}' , '${info.note}' , '${info.date}')" class="btn btn-warning text-light btn-sm">تعديل</button>
@@ -210,6 +211,44 @@ function displayProfileData(data) {
 
 // STRTA FUNCTION ADD TRANSACTION
 
+// GET MONTHS BALANCE FROM DATA BASE
+function displayMonthsBalance(data) {
+  let monthBalancesContent = "";
+  monthBalancesContent = "";
+  data.data.forEach((month) => {
+    monthBalancesContent += `
+          <option value="${month.value}"> <h5 class="me-5">الشهر : ${month.label}</h5> <h5>المستحق : ${month.financial.remaining} ريال</h5></option>
+        `;
+  });
+  selectDate.innerHTML += monthBalancesContent;
+}
+async function monthBalances() {
+  try {
+    const response = await fetch(
+      `${base_url}/workers/${workerId}/transactions/month-balances`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Username": JSON.parse(localStorage.getItem("info")).username,
+          "X-Login-Key": JSON.parse(localStorage.getItem("info")).loginKey,
+          "X-Project-Id": localStorage.getItem("projectId"),
+        },
+      },
+    );
+    const data = await response.json();
+    if (data.success) {
+      displayMonthsBalance(data);
+    } else {
+      console.log(data);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+// call function display monthBalances
+monthBalances();
+
 btnApllayTransactions.addEventListener("click", addTransaction);
 
 async function addTransaction(name) {
@@ -217,8 +256,15 @@ async function addTransaction(name) {
     type: transactionsType,
     amount: amountInput.value,
     note: noteInput.value,
-    date: date.value,
   };
+
+  if (date.value) {
+    body.date = date.value;
+  } else if (selectDate.value) {
+    body.month = selectDate.value;
+  }
+
+  console.log(body);
 
   btnApllayTransactions.disabled = true;
   const orginalText = btnApllayTransactions.innerHTML;
@@ -251,6 +297,7 @@ async function addTransaction(name) {
       amountInput.value = "";
     } else {
       toastify(`ادخل البيانات بشكل صحيح`, "#dc3545");
+      console.log(data);
     }
   } catch (error) {
     console.log(error);
@@ -268,6 +315,7 @@ const selectType = document.querySelector(".select-type");
 const inputEditAmount = document.querySelector(".input-edit-amount");
 const inputEditNote = document.querySelector(".input-edit-note");
 const inputEditDate = document.querySelector(".inputEditDate");
+const selectEditDate = document.querySelector(".select-edit-date");
 const btnApplyEditTransaction = document.querySelector(
   ".btn-apply-edit-transaction",
 );

@@ -2,8 +2,8 @@ const logo = document.querySelector(".logo");
 const projectInfo = document.querySelector(".projectInfo");
 const workers = document.querySelector(".workers");
 const cost = document.querySelector(".cost");
-let base_url = "https://project-management-backend-jco6.onrender.com/api";
-// const base_url = "http://localhost:5000/api";
+// let base_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "http://localhost:5000/api";
 
 const params = new URLSearchParams(window.location.search);
 let projectId = params.get("id");

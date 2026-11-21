@@ -74,10 +74,13 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="index.html">
-                الاسبوع الحالي</a
+                جدول الحضور</a
               >
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link" href="deletedWorkers.html"> المحذوفين </a>
+            </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -118,6 +121,40 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                الملف الشخصي
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="userAcount.html">الحساب </a>
+                </li>
+                <li class="allUsersLink">
+                  <a class="dropdown-item" href="allUsers.html">
+                    كل الحسابات
+                  </a>
+                </li>
+                <li class="audit-logs">
+                  <a class="dropdown-item" href="audit-logs.html">
+                    سجل الحركات
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="btn btnLogout btn-danger w-100 mt-2 mb-0"
+                    href="#"
+                  >
+                    تسجيل الخروخ
+                  </button>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -151,6 +188,7 @@
     <script src="js/toastify.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/loading.js"></script>
+    <script src="js/layout.js"></script>
     <script src="js/deletedWorkers.js"></script>
   </body>
 </html>

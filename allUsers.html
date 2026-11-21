@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <style>
+      .acount {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- STRAT NAVBAR -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" dir="rtl">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <h4 class="logo">صفحه تعرض للادمن فقط</h4>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="projects.html">
+                المشاريع</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html">
+                جدول الحضور</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="deletedWorkers.html"> المحذوفين </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                المصاريف والايرادات
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="expenses.html">المصاريف </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="receipts.html">الايرادات </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ارشيف العمال
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="arshef.html">ارشيف شهري</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="project-archive.html"
+                    >ارشيف المشروع ككل</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                الملف الشخصي
+              </a>
+              <ul class="dropdown-menu text-right">
+                <li>
+                  <a class="dropdown-item" href="userAcount.html">الحساب </a>
+                </li>
+                <li class="allUsersLink">
+                  <a class="dropdown-item" href="allUsers.html">
+                    كل الحسابات
+                  </a>
+                </li>
+                <li class="audit-logs">
+                  <a class="dropdown-item" href="audit-logs.html">
+                    سجل الحركات
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="btn btnLogout btn-danger w-100 mt-2 mb-0"
+                    href="#"
+                  >
+                    تسجيل الخروخ
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- EDIT ACOUNT WITH ADMIN -->
+    <div class="acount p-3">
+      <div class="form-group my-3">
+        <label for="">الاسم</label>
+        <input type="text" class="form-control name" />
+      </div>
+      <div class="form-group my-3">
+        <label for="">الايميل</label>
+        <input type="text" class="form-control email" />
+      </div>
+      <div class="form-group my-3">
+        <label for="">كلمه السر</label>
+        <input
+          type="text"
+          class="form-control password"
+          placeholder="تعديل كلمه السر"
+        />
+      </div>
+
+      <button class="btn btn-success editAcount">تعديل</button>
+      <button class="btn btn-danger close">الغاء</button>
+    </div>
+    <!-- All Users Table -->
+    <section class="users">
+      <div class="container">
+        <h2 class="my-4 text-center">جميع مستخدمين النظام</h2>
+        <div class="table-responsive">
+          <table
+            class="table table-bordered table-striped table-hover text-center align-middle"
+          >
+            <thead>
+              <tr class="">
+                <th>#</th>
+                <th>id</th>
+                <th>اسم المستخدم</th>
+                <th>الايميل</th>
+                <th>الصلاحيه</th>
+                <th>تاريخ الانشاء</th>
+                <th>عمليات</th>
+              </tr>
+            </thead>
+
+            <tbody class="tableAcounts"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="js/toastify.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/layout.js"></script>
+
+    <script src="js/allUsers.js"></script>
+  </body>
+</html>

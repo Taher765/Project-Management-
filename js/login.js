@@ -3,8 +3,8 @@ const password = document.getElementById("password");
 const message = document.getElementById("message");
 const btnSupmit = document.getElementById("btnSupmit");
 
-const base_url = "https://project-management-backend-jco6.onrender.com/api";
-// const base_url = "http://localhost:5000/api";
+// const base_url = "https://project-management-backend-jco6.onrender.com/api";
+const base_url = "http://localhost:5000/api";
 
 addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
@@ -36,8 +36,15 @@ async function login(e) {
     const data = await response.json();
 
     if (data.success) {
-      setUserLocalStorage(data.data.username, data.data.loginKey);
+      setUserLocalStorage(
+        data.data.username,
+        data.data.loginKey,
+        data.data.role,
+        data.data.id,
+        data.data.email,
+      );
       window.location = "projects.html";
+      console.log(data);
     } else {
       toastify(data.message, "#dc3545");
     }
