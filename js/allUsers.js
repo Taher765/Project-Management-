@@ -8,7 +8,8 @@ const tableAcounts = document.querySelector(".tableAcounts");
 const acountInfo = JSON.parse(localStorage.getItem("info"));
 
 let globalID = null;
-const base_url = "http://localhost:5000/api";
+// const base_url = "http://localhost:5000/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
 
 async function getAllAcounts() {
   try {

@@ -13,7 +13,8 @@ const deleteAcount = document.querySelector(".deleteAcount");
 const titleProject = document.querySelector(".logo span");
 const acountInfo = JSON.parse(localStorage.getItem("info"));
 
-const base_url = "http://localhost:5000/api";
+// const base_url = "http://localhost:5000/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
 
 // GET PROJECT INFO
 addEventListener("DOMContentLoaded", getProject);

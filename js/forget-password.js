@@ -5,7 +5,8 @@ const sendEmail = document.querySelector(".sendEmail");
 const newPassword = document.querySelector(".newPassword");
 const btnNewPassword = document.querySelector(".btnNewPassword");
 
-const base_url = "http://localhost:5000/api";
+// const base_url = "http://localhost:5000/api";
+const base_url = "https://project-management-backend-jco6.onrender.com/api";
 
 // Function SEND EMAIL
 sendEmail.addEventListener("click", sendEmailToServer);
